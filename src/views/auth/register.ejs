@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head.ejs') %>
+  <body>
+    <section class="tstbite-section p-0">
+      <%- include('../components/navbar.ejs') %>
+      <div class="container text-center p-5">
+        <h5>Register</h5>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-5 col-sm-8">
+            <form action="/register" method="post">
+              <div class="form-outline mb-3">
+                <label class="form-label" for="fullname"> Fullname </label>
+                <input
+                  type="text"
+                  name="fullname"
+                  id="fullname"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-outline mb-3">
+                <label class="form-label" for="email"> Email address </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label" for="password">Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label" for="password">
+                      Confirm Password
+                    </label>
+                    <input
+                      type="password"
+                      name="confirm_password"
+                      id="password"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <% if (locals.message) { %>
+              <div class="form-outline mb-3">
+                <div class="alert alert-success"><%= message %></div>
+              </div>
+              <% } %>
+
+              <button type="submit" class="btn btn-primary btn-block mb-4">
+                Sign up
+              </button>
+
+              <div class="text-center">
+                <p>Already have an account? <a href="/login">Login</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <%- include('../components/footer.ejs') %>
+    </section>
+  </body>
+</html>

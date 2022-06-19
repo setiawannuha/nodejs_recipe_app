@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head.ejs') %>
+  <body>
+    <section class="tstbite-section p-0">
+      <%- include('../components/navbar.ejs') %>
+      <div class="container">
+        <div class="mt-5">
+          <h6 class="py-3 mb-0 h2"><%= recipe.title %></h6>
+        </div>
+        <div class="d-flex flex-wrap">
+          <div class="my-2 mr-4">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+              class="rounded-circle"
+              width="25px"
+              alt="Avatar"
+            />
+            <small class="pl-1"> <%= recipe.user.fullname %> </small>
+          </div>
+          <div class="my-2 mr-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13.333"
+              height="14.666"
+              viewBox="0 0 13.333 14.666"
+            >
+              <path
+                d="M2,14.666a2,2,0,0,1-2-2V3.333a2,2,0,0,1,2-2H3.334V.667a.667.667,0,0,1,1.333,0v.667h4V.667A.667.667,0,0,1,10,.667v.667h1.333a2,2,0,0,1,2,2v9.334a2,2,0,0,1-2,2Zm-.667-2A.667.667,0,0,0,2,13.333h9.334A.667.667,0,0,0,12,12.667v-6H1.333ZM12,5.333v-2a.667.667,0,0,0-.667-.667H10v.667a.667.667,0,0,1-1.334,0V2.666h-4v.667a.667.667,0,1,1-1.333,0V2.666H2a.667.667,0,0,0-.667.667v2Z"
+              />
+            </svg>
+            <small
+              ><%= moment(recipe.createdAt).format("dddd, DD MMM YYYY")
+              %></small
+            >
+          </div>
+        </div>
+        <div class="blog-detail">
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <p><%= recipe.description %></p>
+            </div>
+            <div class="col-md-6">
+              <div
+                class="rounded-12 overflow-hidden position-relative tstbite-svg"
+              >
+                <img
+                  src="/images/recipes/<%= recipe.image %>"
+                  class="w-100"
+                  alt="Menu"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mt-4 mt-md-5">
+                <h6>Ingredients</h6>
+                <div class="checklist pb-2">
+                  <% recipe.ingredients.forEach(element => { %>
+                  <div class="form-check form-check-rounded recipe-checkbox">
+                    <input
+                      type="checkbox"
+                      id="<%= element %>"
+                      name="<%= element %>"
+                      class="form-check-input"
+                    />
+                    <label class="form-check-label" for="<%= element %>">
+                      <%= element %>
+                    </label>
+                  </div>
+                  <% }) %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mt-3 mt-md-5">
+                <h6>Instructions</h6>
+                <ul class="instruction-list list-unstyled">
+                  <% recipe.intructions.forEach((element, i) => { %>
+                  <li>
+                    <span><%= i+1 %></span>
+                    <%= element %>
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%- include('../components/footer.ejs') %>
+    </section>
+  </body>
+</html>

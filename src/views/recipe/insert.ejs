@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head.ejs') %>
+  <body>
+    <section class="tstbite-section p-0">
+      <div class="container p-5">
+        <h5>Insert new recipe</h5>
+        <form
+          class=""
+          action="/insert-recipe"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="row mt-5">
+            <div class="col-lg-5">
+              <div class="form-outline mb-4">
+                <label class="form-label" for="title"> Title </label>
+                <input
+                  name="title"
+                  type="text"
+                  id="title"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="description">
+                  Description
+                </label>
+                <textarea
+                  name="description"
+                  id="description"
+                  class="form-control"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="image"> Image </label>
+                <input
+                  name="image"
+                  type="file"
+                  id="image"
+                  class="form-control"
+                  accept=".jpg, .png"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="card card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class="form-label"> Ingredients </label>
+                    <div class="ingredients-container">
+                      <div class="input-group mb-3">
+                        <input
+                          name="ingredient[]"
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Ingredient"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button
+                        type="button"
+                        id="add-ingredient"
+                        class="btn btn-outline-light btn-block btn-sm"
+                      >
+                        Add Ingredient
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label"> Intructions </label>
+                    <div class="intructions-container">
+                      <div class="form-outline mb-3">
+                        <input
+                          name="intruction[]"
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Intruction"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button
+                        type="button"
+                        id="add-intruction"
+                        class="btn btn-outline-light btn-block btn-sm"
+                      >
+                        Add Intruction
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-secondary fixed-bottom pt-4">
+            <div class="container d-flex justify-content-end pr-5">
+              <a href="/my-recipe" class="btn btn-link mb-4 mr-2"> Cancel </a>
+              <button type="submit" class="btn btn-primary mb-4">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
+<script>
+  $("#add-ingredient").click(() => {
+    $(".ingredients-container").append(`
+      <div class="input-group mb-3">
+        <input
+          name="ingredient[]"
+          type="text"
+          class="form-control"
+          placeholder="Enter Ingredient"
+          required
+        />
+        <button type="button" onClick="deleteIngredient(this)" class="btn btn-danger">&#x2715;</button>
+      </div>
+    `);
+  });
+  const deleteIngredient = (e) => {
+    const parent = e.closest("div.input-group");
+    parent.remove();
+  };
+
+  $("#add-intruction").click(() => {
+    $(".intructions-container").append(`
+      <div class="input-group mb-3">
+        <input
+          name="intruction[]"
+          type="text"
+          class="form-control"
+          placeholder="Enter Intruction"
+          required
+        />
+        <button type="button" onClick="deleteIntruction(this)" class="btn btn-danger">&#x2715;</button>
+      </div>
+    `);
+  });
+  const deleteIntruction = (e) => {
+    const parent = e.closest("div.input-group");
+    parent.remove();
+  };
+</script>

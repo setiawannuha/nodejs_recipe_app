@@ -1,0 +1,7 @@
+node_modules
+.env
+public/images/recipes/*.jpeg
+public/images/recipes/*.png
+public/images/recipes/*.jpg
+public/images/recipes/*.svg
+public/images/recipes/*.gif

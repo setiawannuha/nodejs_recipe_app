@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head.ejs') %>
+  <body>
+    <section class="tstbite-section p-0">
+      <%- include('../components/navbar.ejs') %>
+      <div class="container text-center p-5">
+        <h5>Login</h5>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-4 col-sm-8">
+            <form class="" action="/login" method="post">
+              <div class="form-outline mb-4">
+                <label class="form-label" for="email"> Email address </label>
+                <input
+                  name="email"
+                  type="email"
+                  id="email"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input
+                  name="password"
+                  type="password"
+                  id="password"
+                  class="form-control"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block mb-4">
+                Sign in
+              </button>
+
+              <div class="text-center">
+                <p>Not a member? <a href="/register">Register</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <%- include('../components/footer.ejs') %>
+    </section>
+  </body>
+</html>

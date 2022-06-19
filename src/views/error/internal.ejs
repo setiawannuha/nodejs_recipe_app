@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head.ejs') %>
+  <body>
+    <!-- Tstbite Section, P 0 -->
+    <section class="tstbite-section p-0">
+      <div class="container text-center p-5">
+        <h5>Something Wrong</h5>
+        <div
+          class="d-flex justify-content-center align-items-center flex-column"
+        >
+          <p class="mt-5 w-50"><%= data.error %></p>
+          <div class="mt-2">
+            <a
+              href="/"
+              class="btn btn-outline-dark btn-sm px-4 px-md-5 py-1 py-md-2 big font-weight-medium"
+            >
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

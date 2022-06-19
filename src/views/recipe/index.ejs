@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head.ejs') %>
+  <body>
+    <!-- Tstbite Section, P 0 -->
+    <section class="tstbite-section p-0">
+      <%- include('../components/navbar.ejs') %>
+      <div class="container">
+        <!-- Tstbite Components, My 4, My Md 5 -->
+        <section class="tstbite-components my-4 my-md-5">
+          <h5 class="py-3 mb-0">All Recipes</h5>
+          <div class="row">
+            <div class="col-12">
+              <form action="/recipe" method="get" class="input-group mt-4 mb-4">
+                <input
+                  name="search"
+                  type="text"
+                  class="form-control"
+                  placeholder="Search..."
+                  value="<%= search %>"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <% if (recipes.length <= 0) { %>
+          <div class="d-flex justify-content-center align-items-center p-5">
+            No data found
+          </div>
+          <% }else{ %>
+          <div class="row">
+            <% recipes.forEach(element => { %>
+            <div class="col-lg-3 col-md-4 col-6">
+              <figure class="my-3 my-md-4 tstbite-card">
+                <a
+                  href="/detail-recipe/<%= element._id %>"
+                  class="tstbite-animation stretched-link rounded-6"
+                >
+                  <img
+                    src="/images/recipes/<%= element.image %>"
+                    class="w-100"
+                    alt="Menu"
+                  />
+                </a>
+                <figcaption class="mt-2">
+                  <span
+                    class="text-black d-block mt-1 font-weight-semibold big"
+                  >
+                    <%= element.title %>
+                    <div>
+                      <small class="text-primary"
+                        >Recipe By <%= element.user.fullname %>
+                      </small>
+                    </div>
+                  </span>
+                </figcaption>
+              </figure>
+            </div>
+            <% }) %>
+            <div class="col-12 mt-5">
+              <div class="mb-2">
+                Showing <%= recipes.length %> of <%= pagination.total %> entries
+              </div>
+              <% for( let i = 1; i <= pagination.pages; i++ ) { %> <% if
+              (pagination.page === i) { %>
+              <a
+                href="/recipe?search=<%= search %>&page=<%= i %>"
+                class="btn btn-primary"
+              >
+                <%= i %>
+              </a>
+              <% }else{ %>
+              <a
+                href="/recipe?search=<%= search %>&page=<%= i %>"
+                class="btn btn-secondary"
+              >
+                <%= i %>
+              </a>
+              <% } %> <% } %>
+            </div>
+          </div>
+          <% } %>
+        </section>
+      </div>
+      <%- include('../components/footer.ejs') %>
+    </section>
+  </body>
+</html>

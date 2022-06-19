@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head.ejs') %>
+  <body>
+    <!-- Tstbite Section, P 0 -->
+    <section class="tstbite-section p-0">
+      <%- include('../components/navbar.ejs') %>
+      <div class="container">
+        <!-- Tstbite Components, My 4, My Md 5 -->
+        <section class="tstbite-components my-4 my-md-5">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h5 class="py-3 mb-0">My Recipes</h5>
+            </div>
+            <div>
+              <a href="/insert-recipe" class="btn btn-primary">New recipe</a>
+            </div>
+          </div>
+
+          <% if (recipes.length <= 0) { %>
+          <div class="d-flex justify-content-center align-items-center p-5">
+            No data found
+          </div>
+          <% }else{ %>
+          <div class="row">
+            <% recipes.forEach(element => { %>
+            <div class="col-lg-3 col-md-4 col-6">
+              <div class="my-3 my-md-4 tstbite-card">
+                <a
+                  href="/detail-recipe/<%= element._id %>"
+                  class="tstbite-animation stretched-link rounded-6"
+                >
+                  <img
+                    src="/images/recipes/<%= element.image %>"
+                    class="w-100"
+                    alt="Menu"
+                  />
+                </a>
+                <div class="mt-2">
+                  <p class="text-black d-block mt-1 font-weight-semibold big">
+                    <%= element.title %>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <a
+                  href="/edit-recipe/<%= element._id %>"
+                  class="btn btn-primary btn-sm"
+                >
+                  Edit
+                </a>
+                <button
+                  onclick="onDelete('/delete-recipe/<%= element._id %>')"
+                  class="btn btn-secondary btn-sm"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <% } %>
+        </section>
+      </div>
+      <%- include('../components/footer.ejs') %>
+    </section>
+  </body>
+</html>
+<script>
+  const onDelete = (url) => {
+    const confirmation = confirm("Are you sure to want delete it?");
+    if (confirmation) {
+      window.location = url;
+    }
+  };
+</script>
